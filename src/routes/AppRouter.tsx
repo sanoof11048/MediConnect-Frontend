@@ -4,6 +4,7 @@ import Login from '../features/auth/pages/Login';
 import ProtectedRoute from './ProtectedRoute';
 import NotFoundPage from '../pages/404';
 import ForgotPassword from '../features/auth/pages/ForgetPassword';
+import NavigationPage from '../pages/NavigationPage';
 
 
 export default function AppRouter() {
@@ -12,6 +13,7 @@ export default function AppRouter() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/forget" element={<ForgotPassword />} />
+        <Route path="/" element={<NavigationPage/>} />
 
         <Route path="/unauthorized" element={<h1>Unauthorized</h1>} />
         
@@ -24,7 +26,7 @@ export default function AppRouter() {
           }
         />
 
-        <Route path="/" element={<NotFoundPage/>} />
+        <Route path="*" element={<NotFoundPage/>} />
       </Routes>
     // </Router>
   );
