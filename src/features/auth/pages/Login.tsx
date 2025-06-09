@@ -35,22 +35,21 @@ export default function MediConnectLogin() {
                 }
             );
             navigate('/');
-        } catch (error) {
-            // toast handles the error
+        } catch (error: any) {
+            toast.error(error.response?.data?.message || 'Login failed. Please try again.');
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <div className="md:max-h-screen bg-gradient-to-br from-slate-50 to-gray-100 flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            {/* Background Effects */}
+        <div className="md:max-h-screen min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style={{ background: '#1a97cd' }}></div>
                 <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" style={{ background: '#3aba90', animationDelay: '2s' }}></div>
             </div>
 
-            <div className="relative z-10 w-full max-w-md sm:scale-100 md:scale-75 scale-95">
+            <div className="relative z-10 w-full md:max-w-xl sm:scale-100 md:scale-80 scale-95">
                 <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-6 sm:p-8">
                     {/* Branding */}
                     <div className="text-center mb-6 sm:mb-8">
@@ -62,7 +61,7 @@ export default function MediConnectLogin() {
                     </div>
 
                     {/* Google Login */}
-                    <GoogleLoginButton />
+                    <GoogleLoginButton divId="googleSignInDesktop" />
 
                     {/* Divider */}
                     <div className="relative my-5 sm:my-6">
