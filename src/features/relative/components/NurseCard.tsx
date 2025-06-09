@@ -41,7 +41,7 @@ import { Phone, Star, Trash2 } from "lucide-react";
         </button>
         {nurse.status === 'Active' && (
           <button 
-            onClick={() => handleFireNurse(nurse.id)}
+            // onClick={() => handleFireNurse(nurse.id)}
             className="py-2 px-4 text-sm font-medium bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors"
           >
             <Trash2 size={14} />

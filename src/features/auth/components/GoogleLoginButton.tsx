@@ -49,6 +49,7 @@ function GoogleLoginButton({ divId }: GoogleLoginButtonProps) {
           error: 'Google login failed. Please try again.',
         }
       );
+      console.log(res)
       // const role = res.data.data.role;
       navigate('/');
     } catch (error) {

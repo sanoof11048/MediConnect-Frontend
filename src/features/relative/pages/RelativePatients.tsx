@@ -3,7 +3,7 @@ import  { useState } from 'react'
 import PatientCard from '../components/PatientCard';
 
 function RelativePatients() {
-    const [patients, setPatients] = useState([
+    const [patients] = useState([
         {
             id: 1,
             name: 'John Smith',

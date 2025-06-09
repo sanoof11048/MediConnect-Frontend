@@ -2,7 +2,7 @@ import { Check } from 'lucide-react'
 import  { useState } from 'react'
 
 function RelativePayments() {
-      const [payments, setPayments] = useState([
+      const [payments] = useState([
         { id: 1, nurseName: 'Sarah Johnson', hours: 40, rate: 35, amount: 1400, period: 'Week 1 - June 2025', status: 'Paid' },
         { id: 2, nurseName: 'Mike Davis', hours: 35, rate: 32, amount: 1120, period: 'Week 1 - June 2025', status: 'Pending' },
         { id: 3, nurseName: 'Sarah Johnson', hours: 38, rate: 35, amount: 1330, period: 'Week 2 - June 2025', status: 'Pending' }

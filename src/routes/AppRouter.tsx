@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from '../features/auth/pages/Login';
-import ProtectedRoute from './ProtectedRoute';
 import NotFoundPage from '../pages/404';
 import ForgotPassword from '../features/auth/pages/ForgetPassword';
 import NavigationPage from '../pages/NavigationPage';

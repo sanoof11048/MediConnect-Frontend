@@ -58,7 +58,7 @@ function RelativeNurse() {
                     <p className="text-gray-600">Manage your healthcare professionals</p>
                 </div>
                 <button
-                    // onClick={() => setShowAddNurse(true)}
+                    onClick={() => setNurses([])}
                     className="px-6 py-3 text-white rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-200"
                     style={{ backgroundColor: '#3aba90' }}
                 >

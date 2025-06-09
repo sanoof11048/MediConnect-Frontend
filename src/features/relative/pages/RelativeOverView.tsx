@@ -4,7 +4,7 @@ import { DollarSign, Heart, Plus, Stethoscope, User, Users } from 'lucide-react'
 import PatientCard from '../components/PatientCard';
 
 export default function RelativeOverView() {
-     const [patients, setPatients] = useState([
+     const [patients] = useState([
         {
           id: 1,
           name: 'John Smith',
@@ -48,7 +48,7 @@ export default function RelativeOverView() {
           avatar: 'https://ui-avatars.com/api/?name=Robert+Wilson&background=1a98cd&color=fff'
         }
       ]);
-      const [nurses, setNurses] = useState([
+      const [nurses] = useState([
           {
             id: 1,
             name: 'Sarah Johnson',
