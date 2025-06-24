@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import axiosAuth from '../api/axiosAuth';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 type User = {
   userId: string;
@@ -18,6 +19,7 @@ type AuthContextType = {
   logout: () => void;
   isLoading: boolean;
   signUp: (UserData: FormData) => Promise<void>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AuthContext = createContext<AuthContextType>({
@@ -26,6 +28,7 @@ const AuthContext = createContext<AuthContextType>({
   logout: () => { },
   isLoading: true,
   signUp: async () => { },
+  setIsLoading: () => { },
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -46,7 +49,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       refreshToken: userData.refreshToken,
     };
     localStorage.setItem('authUser', JSON.stringify(fullUser));
+    localStorage.setItem('token', userData.accessToken);
+
     setUser(fullUser);
+    if (userData.role == "Admin")
+      navigate('/')
+    if (userData.role == "HomeNurse")
+      navigate('/')
+    if (userData.role == "Relative")
+      navigate('/relative')
+    navigate('/');
   };
 
   const signUp = async (userData: FormData) => {
@@ -63,8 +75,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           refreshToken: user.refreshToken,
         };
         localStorage.setItem('authUser', JSON.stringify(fullUser));
+        localStorage.setItem('token', user.accessToken);
+
         setUser(fullUser);
-        navigate('/dashboard');
+        if (user.role == "Admin")
+          navigate('/')
+        if (user.role == "HomeNurse")
+          navigate('/')
+        if (user.role == "Relative")
+          navigate('/relative')
+        navigate('/');
       })
     // .catch(error => {
     //   console.error('Sign Up Error:', error);
@@ -73,23 +93,51 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('authUser');
-    navigate('/login');
+  const logout = async () => {
+    try {
+      await toast.promise(
+        axiosAuth.post('/Auth/logout'),
+        {
+          loading: 'Logging out...',
+          success: (res) => {
+            setUser(null);
+            localStorage.clear();
+            navigate('/login');
+            return res.data.message || 'Logged out successfully';
+          },
+          error: (err) => {
+            throw err?.response?.data?.message || 'Logout failed';
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Logout Error:", error);
+      toast.error(typeof error === 'string' ? error : 'Something went wrong during logout.');
+    }
   };
 
   useEffect(() => {
-
     const storedUser = localStorage.getItem('authUser');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+        console.log("first")
+      } catch (error) {
+        console.error('Error parsing stored user:', error);
+        localStorage.removeItem('authUser');
+        setUser(null);
+      } finally {
+
+        setIsLoading(false);
+      }
     }
     setIsLoading(false);
   }, []);
 
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading, signUp }}>
+    <AuthContext.Provider value={{ user, login, logout, isLoading, signUp, setIsLoading }}>
       {children}
     </AuthContext.Provider>
   );

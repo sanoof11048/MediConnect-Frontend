@@ -5,7 +5,7 @@ import axiosAuth from '../../../api/axiosAuth';
 import toast from 'react-hot-toast';
 
 export default function ForgotPassword() {
-  const [step, setStep] = useState(1); // 1: Email, 2: OTP, 3: New Password, 4: Success
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [newPassword, setNewPassword] = useState('');
@@ -48,12 +48,10 @@ export default function ForgotPassword() {
               setCanResend(false);
               return res.data.message || 'OTP sent successfully';
             } else {
-              // This case is usually handled as error response, but just in case:
               throw new Error(res.data.message || 'Failed to send OTP');
             }
           },
           error: (err) => {
-            // err here is axios error object
             return err?.response?.data?.error || err?.response?.data?.message || 'Failed to send OTP';
           }
         }
@@ -131,6 +129,7 @@ export default function ForgotPassword() {
 
     setIsLoading(true);
     try {
+      console.log(email)
       const res = await axiosAuth.post(
         '/Auth/reset-password',
         {
@@ -164,7 +163,6 @@ export default function ForgotPassword() {
     handleEmailSubmit();
     setTimer(60);
     setOtp(['', '', '', '', '', '']);
-    // Simulate resend API call
     setTimeout(() => {
       console.log('OTP resent');
     }, 500);
@@ -180,7 +178,6 @@ export default function ForgotPassword() {
     navigate('/login');
   };
 
-  // Password strength validation
   const getPasswordStrength = (password: string) => {
     if (!password) return { strength: 0, text: '', color: '' };
 

@@ -112,7 +112,7 @@ const StandardSignUp: React.FC = () => {
 
             const response = await axiosAuth.post('/auth/signup', formDataToSend);
             toast.success(response?.data?.data?.message || 'Account created successfully!');
-            navigate('/');
+            // navigate('/');
         } catch (error: any) {
             const message = error.response?.data?.message || 'Something went wrong. Please try again.';
             toast.error(message);
