@@ -1,7 +1,6 @@
-import React from 'react';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import React, { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 type LazyImageProps = {
   src: string;
@@ -16,16 +15,25 @@ const LazyImage: React.FC<LazyImageProps> = ({
   className = '',
   skeletonHeight = 300,
 }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
-    <LazyLoadImage
-      src={src}
-      alt={alt}
-      effect="blur"
-      className={className}
-      placeholderSrc=""
-      height={skeletonHeight}
-      style={{ }}
-    />
+    <div
+      className="relative overflow-hidden rounded-lg"
+      style={{ height: skeletonHeight }}
+    >
+      {!isLoaded && (
+        <div className="skeleton-shimmer" style={{ height: skeletonHeight }} />
+      )}
+      <LazyLoadImage
+        src={src}
+        alt={alt}
+        afterLoad={() => setIsLoaded(true)}
+        effect="blur"
+        className={`${className} ${!isLoaded ? 'invisible' : 'visible'} w-full h-full object-cover`}
+        height={skeletonHeight}
+      />
+    </div>
   );
 };
 
