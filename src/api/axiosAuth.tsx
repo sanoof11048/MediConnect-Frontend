@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosAuth = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "https://medi-connect-api-y3sn.onrender.com/api",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "https://medi-connect-api-zak6.onrender.com/api",
   withCredentials: true,
 });
 
