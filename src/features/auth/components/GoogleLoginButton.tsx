@@ -47,9 +47,7 @@ function GoogleLoginButton({ divId }: GoogleLoginButtonProps) {
   axiosAuth.post(
     '/Auth/google-login',
     { idToken: response.credential }
-  ).then((ress)=>{
-    console.log(ress.data)
-  }),
+  ),
 
         {
           loading: 'Logging in with Google...',
@@ -61,30 +59,31 @@ function GoogleLoginButton({ divId }: GoogleLoginButtonProps) {
       localStorage.setItem('authUser', JSON.stringify(userData));
       localStorage.setItem('token', userData.accessToken);
       console.log(userData.role)
+      console.log(userData)
       if (userData.role == "Admin"){
         console.log("ToAdmin")
+        // setIsLoading(true);
         navigate('/admin')
-        setIsLoading(true);
       }
       else if (userData.role == "HomeNurse"){
         console.log("ToNurse")
+        // setIsLoading(true);
         navigate('/nurse')
-        setIsLoading(true);
       }
       else if (userData.role == "Relative"){
         console.log("ToRelative")
+        // setIsLoading(true);
         navigate('/relative')
-        setIsLoading(true);
       }
       else{
         console.log("ToHome")
+        // setIsLoading(true);
         navigate('/');
-        setIsLoading(true);
       }
     } catch (error) {
       console.error('Login failed:', error);
     }finally{
-      setIsLoading(true);
+      // setIsLoading(true);
     }
   };
 

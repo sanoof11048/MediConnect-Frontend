@@ -24,7 +24,7 @@ const Header: React.FC = () => {
     ];
 
     return (
-        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-white/90 backdrop-blur-sm'
+        <header className={`fixed left-10 right-10 z-50 rounded-2xl shadow-2xl transition-all duration-300 ${isScrolled ? 'bg-white/80 shadow-lg top-2' : 'bg-white/90 backdrop-blur-sm top-7'
             }`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
@@ -93,7 +93,7 @@ const Header: React.FC = () => {
                             <div className="flex flex-col space-y-2 px-3 pt-4">
                                 <button
                                     onClick={() => navigate('/login')}
-                                    className="text-[#1a98cd] hover:text-[#3aba90] transition-colors duration-200 text-left">
+                                    className="text-[#1a98cd] hover:text-[#3aba90] transition-colors duration-200">
 
                                     Login
                                 </button>

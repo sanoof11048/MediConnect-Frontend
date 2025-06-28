@@ -168,14 +168,14 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Contact Info & Image */}
-          <div className="space-y-8">
+          <div className="space-y-8 relative">
             {/* Image */}
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <div className="relative overflow-hidden  rounded-2xl shadow-2xl">
               <LazyImage
               src={ContactImage}
                 // src="https://images.pexels.com/photos/7195769/pexels-photo-7195769.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="Healthcare professional consulting with patient"
-                className="w-full h-[400px] object-cover"
+                className="w-full h-[600px]  object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6">
@@ -215,7 +215,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Emergency Notice */}
-            <div className="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl p-6">
+            {/* <div className="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl p-6">
               <div className="flex items-start space-x-3">
                 <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
                   <Phone className="w-4 h-4 text-red-600" />
@@ -231,7 +231,7 @@ const Contact: React.FC = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

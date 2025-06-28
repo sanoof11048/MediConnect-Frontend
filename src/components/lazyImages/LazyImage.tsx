@@ -13,7 +13,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
   src,
   alt,
   className = '',
-  skeletonHeight = 300,
+  skeletonHeight = 100,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -30,7 +30,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
         alt={alt}
         afterLoad={() => setIsLoaded(true)}
         effect="blur"
-        className={`${className} ${!isLoaded ? 'invisible' : 'visible'} w-full h-full object-cover`}
+        className={`${className} ${!isLoaded ? 'invisible' : 'visible'} w-fit  object-fill`}
         height={skeletonHeight}
       />
     </div>

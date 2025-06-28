@@ -86,7 +86,7 @@ export const AdminProvider = ({ children }: { children: ReactNode }) => {
 
       loadData();
     }
-            setAdminLoading(false);
+    setAdminLoading(false);
 
   }, [user]);
 
