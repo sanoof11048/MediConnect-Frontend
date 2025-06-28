@@ -5,11 +5,14 @@ import { Eye, EyeOff, Heart, Mail, Lock, ArrowRight } from 'lucide-react';
 import GoogleLoginButton from '../components/GoogleLoginButton';
 import { useAuth } from '../../../context/AuthContext';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function MediConnectLogin() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { login } = useAuth();
+
+    const navigate = useNavigate()
 
     const initialValues = {
         email: '',
@@ -122,7 +125,9 @@ export default function MediConnectLogin() {
                                         <input type="checkbox" className="rounded border-gray-300 shadow-sm" style={{ accentColor: '#1a97cd' }} />
                                         <span className="ml-2 text-gray-600">Remember me</span>
                                     </label>
-                                    <a href="/forgetpasword" className="font-medium hover:underline text-[#1a97cd]">
+                                    <a
+                                    onClick={()=>navigate('/forgetPassword')}
+                                    className="font-medium hover:underline text-[#1a97cd]">
                                         Forgot password?
                                     </a>
                                 </div>

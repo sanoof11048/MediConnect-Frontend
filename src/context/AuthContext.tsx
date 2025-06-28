@@ -61,37 +61,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     navigate('/');
   };
 
-  const signUp = async (userData: FormData) => {
-    await axiosAuth.post('/Auth/signup', userData)
-      .then(response => {
-        const user = response.data.data;
-        const fullUser: User = {
-          userId: user.id,
-          fullName: user.fullName,
-          email: user.email,
-          role: user.role,
-          photoUrl: user.photoUrl,
-          accessToken: user.accessToken,
-          refreshToken: user.refreshToken,
-        };
-        localStorage.setItem('authUser', JSON.stringify(fullUser));
-        localStorage.setItem('token', user.accessToken);
+const signUp = async (userData: FormData) => {
+  try {
+    const response = await axiosAuth.post('/Auth/signup', userData);
+    const user = response.data.data;
+    const fullUser: User = {
+      userId: user.id,
+      fullName: user.fullName,
+      email: user.email,
+      role: user.role,
+      photoUrl: user.photoUrl,
+      accessToken: user.accessToken,
+      refreshToken: user.refreshToken,
+    };
+    localStorage.setItem('authUser', JSON.stringify(fullUser));
+    localStorage.setItem('token', user.accessToken);
+    setUser(fullUser);
 
-        setUser(fullUser);
-        if (user.role == "Admin")
-          navigate('/')
-        if (user.role == "HomeNurse")
-          navigate('/')
-        if (user.role == "Relative")
-          navigate('/relative')
-        navigate('/');
-      })
-    // .catch(error => {
-    //   console.error('Sign Up Error:', error);
-    //   throw error;
-    // });
+    if (user.role === "Relative") navigate('/relative');
+    else navigate('/');
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Sign up failed");
+    throw error;
   }
-
+};
 
   const logout = async () => {
     try {

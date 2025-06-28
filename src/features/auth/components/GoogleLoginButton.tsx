@@ -44,9 +44,13 @@ function GoogleLoginButton({ divId }: GoogleLoginButtonProps) {
       setIsLoading(true);
       console.log("first")
       const res = await toast.promise(
-        axiosAuth.post('/Auth/google-login', {
-          idToken: response.credential,
-        }),
+  axiosAuth.post(
+    '/Auth/google-login',
+    { idToken: response.credential }
+  ).then((ress)=>{
+    console.log(ress.data)
+  }),
+
         {
           loading: 'Logging in with Google...',
           success: 'Google login successful!',

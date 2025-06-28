@@ -6,6 +6,7 @@ import { AboutImage } from '../assets/ImageAssets';
 
 
 const About: React.FC = () => {
+
   const values = [
     {
       icon: Shield,
