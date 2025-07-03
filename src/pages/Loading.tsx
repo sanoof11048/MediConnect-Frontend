@@ -1,4 +1,15 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 function Loading() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleRefresh = () => {
+    // Navigate to the same path to trigger a refresh
+    console.log(location.pathname + location.search)
+    navigate(location.pathname + location.search);
+    console.log(location.pathname + location.search)
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="text-center max-w-md mx-auto">
@@ -77,7 +88,7 @@ function Loading() {
 
         {/* 🔁 Refresh Button */}
         <button
-          onClick={() => window.location.reload()}
+          onClick={handleRefresh}
           className="mt-6 px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white text-sm rounded-lg shadow transition"
         >
           Refresh Page
