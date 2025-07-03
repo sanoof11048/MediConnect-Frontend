@@ -49,7 +49,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       refreshToken: userData.refreshToken,
     };
     localStorage.setItem('authUser', JSON.stringify(fullUser));
-    localStorage.setItem('token', userData.accessToken);
+    const token = userData.accessToken
+    localStorage.setItem('token', token);
 
     setUser(fullUser);
     console.log(userData)
