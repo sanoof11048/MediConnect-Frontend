@@ -27,6 +27,7 @@ import HomeNurseDashboard from '../features/homeNurse/pages/HomeNurseDashboard';
 import ProtectedRoute from './ProtectedRoute';
 // import PublicRoute from './PublicRoutes';
 import Home from '../components/Home';
+import Loading from '../pages/Loading';
 
 export default function AppRouter() {
   return (
@@ -34,8 +35,9 @@ export default function AppRouter() {
       {/* Public Routes (restricted for logged-in users) */}
       {/* <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} /> */}
       {/* <Route path="/signup" element={<PublicRoute><SignUp /></PublicRoute>} /> */}
-
+      
       <Route path="/login" element={<Login />} />
+      <Route path="/loading" element={<Loading />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/forgetPassword" element={<ForgotPassword />} />
       <Route path="/" element = {<Home/>}/>

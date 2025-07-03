@@ -168,17 +168,15 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Contact Info & Image */}
-          <div className="space-y-8 relative">
+          <div className="space-y-8 relative w-full h-full">
             {/* Image */}
-            <div className="relative overflow-hidden  rounded-2xl shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <LazyImage
               src={ContactImage}
-                // src="https://images.pexels.com/photos/7195769/pexels-photo-7195769.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="Healthcare professional consulting with patient"
-                className="w-full h-[600px]  object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 right-6">
+              <div className="absolute bottom-6 left-6 right-6 z-20">
                 <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6">
                   <h4 className="text-lg font-semibold text-gray-900 mb-2">
                     Professional Healthcare Consultation

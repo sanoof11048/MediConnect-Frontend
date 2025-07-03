@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, Clock, Award, DollarSign, ArrowRight } from 'lucide-react';
-import CareerImage from '../assets/illustrations/CareerImage.png'
+import LazyImage from './lazyImages/LazyImage';
+import { CareerImage } from '../assets/ImageAssets';
 
 const Careers: React.FC = () => {
   const benefits = [
@@ -47,9 +48,9 @@ const Careers: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-stretch">
           {/* Benefits & Qualifications */}
-          <div className="space-y-12">
+          <div className="space-y-12 flex flex-col justify-between h-full">
             {/* Benefits */}
             <div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-8">Why Choose MediConnect?</h3>
@@ -97,18 +98,22 @@ const Careers: React.FC = () => {
             </div>
           </div>
 
-          {/* Image */}
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-              <img
+
+          {/* Image Section */}
+
+          <div className="relative w-full h-full">
+            <div className="relative overflow-hidden h-full rounded-2xl  ">
+              {/* Lazy Loaded Background Image */}
+              <LazyImage
                 src={CareerImage}
                 alt="Healthcare professionals working together"
-                className="w-full h-[600px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              
-              {/* Overlay Content */}
-              <div className="absolute bottom-8 left-8 right-8">
+
+              {/* Dark gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10" />
+
+              {/* Text Content */}
+              <div className="absolute bottom-8 left-8 right-8 z-20">
                 <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6">
                   <h4 className="text-lg font-semibold text-gray-900 mb-2">
                     Join 200+ Healthcare Professionals
@@ -120,6 +125,9 @@ const Careers: React.FC = () => {
               </div>
             </div>
           </div>
+
+
+
         </div>
       </div>
     </section>

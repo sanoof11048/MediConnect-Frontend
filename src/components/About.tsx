@@ -69,7 +69,7 @@ const About: React.FC = () => {
                 src={AboutImage}
                 alt="Healthcare team providing compassionate care"
                 className="object-contain"
-                skeletonHeight={500}
+                // skeletonHeight={250}
               />
 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
             </div>

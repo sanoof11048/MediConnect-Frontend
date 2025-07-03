@@ -18,20 +18,19 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div
-      className="relative overflow-hidden rounded-lg"
-      style={{ height: skeletonHeight }}
-    >
+    <div className="relative bg-transparent ">
       {!isLoaded && (
-        <div className="skeleton-shimmer" style={{ height: skeletonHeight }} />
+        <div
+          className="bg-gray-200 animate-pulse absolute inset-0 rounded-2xl"
+          style={{ height: skeletonHeight }}
+        />
       )}
       <LazyLoadImage
         src={src}
         alt={alt}
         afterLoad={() => setIsLoaded(true)}
         effect="blur"
-        className={`${className} ${!isLoaded ? 'invisible' : 'visible'} w-fit  object-fill`}
-        height={skeletonHeight}
+        className={`${className} ${!isLoaded ? 'invisible' : 'visible'} object-cover block `}
       />
     </div>
   );

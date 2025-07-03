@@ -9,8 +9,8 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
+          <div className="space-y-4 text-center">
+            <div className="flex items-center justify-center space-x-2">
               <div className="w-10 h-10 bg-gradient-to-r from-[#1a98cd] to-[#3aba90] rounded-lg flex items-center justify-center">
                 <Heart className="w-6 h-6 text-white" />
               </div>
@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             <p className="text-gray-300 leading-relaxed">
               Providing 24/7 advanced nursing home care with hospital-quality services in the comfort of your home.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 items-center justify-center">
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#1a98cd] transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className='text-center'>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">

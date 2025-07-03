@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
               src={HeroImage}
                 alt="Professional nurse providing home healthcare"
                 className=" object-contain"
-                skeletonHeight={500}
+                // skeletonHeight={250}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <LazyImage
                 src={NurseProfile}
-                skeletonHeight={40}
+                // skeletonHeight={40}
                   alt="Healthcare professional"
                   className="w-10 h-10 rounded-full object-cover"
                 />
