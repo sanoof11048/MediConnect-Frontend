@@ -56,7 +56,7 @@ function GoogleLoginButton({ divId }: GoogleLoginButtonProps) {
         }
       );
       const userData = await res.data.data;
-      localStorage.setItem('authUser', userData);
+      localStorage.setItem('authUser', JSON.stringify(userData));
       const token = userData.accessToken
       localStorage.setItem('token', token);
       console.log(userData.role)
