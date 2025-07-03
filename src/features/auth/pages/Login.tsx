@@ -35,7 +35,6 @@ export default function MediConnectLogin() {
                     error: 'Incorrect email or password. Please try again.',
                 }
             );
-            // navi gate('/');
             
         } catch (error: any) {
             toast.error(error.response?.data?.message || 'Login failed. Please try again.');

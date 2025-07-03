@@ -56,8 +56,9 @@ function GoogleLoginButton({ divId }: GoogleLoginButtonProps) {
         }
       );
       const userData = await res.data.data;
-      localStorage.setItem('authUser', JSON.stringify(userData));
-      localStorage.setItem('token', userData.accessToken);
+      localStorage.setItem('authUser', userData);
+      const token = userData.accessToken
+      localStorage.setItem('token', token);
       console.log(userData.role)
       console.log(userData)
       if (userData.role == "Admin"){

@@ -52,7 +52,7 @@ export default function AppRouter() {
           </ProtectedRoute>
         }
       >
-        <Route index element={<RelativeOverView />} />
+        <Route index element={<Navigate to="overview" replace />} />
         <Route path="overview" element={<RelativeOverView />} />
         <Route path="nurses" element={<RelativeNurse />} />
         <Route path="patients" element={<RelativePatients />} />

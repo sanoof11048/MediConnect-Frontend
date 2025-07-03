@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import GoogleLoginButton from '../components/GoogleLoginButton';
-import axiosAuth from '../../../api/axiosAuth';
+import { useAuth } from '../../../context/AuthContext';
 
 interface SignUpFormData {
     fullName: string;
@@ -37,6 +37,8 @@ const StandardSignUp: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [dragActive, setDragActive] = useState(false);
+
+    const {signUp} = useAuth()
 
     const navigate = useNavigate();
 
@@ -99,26 +101,22 @@ const StandardSignUp: React.FC = () => {
             toast.error('Please correct the form errors');
             return;
         }
+        const formDataToSend = new FormData();
+        formDataToSend.append('fullName', formData.fullName);
+        formDataToSend.append('email', formData.email);
+        formDataToSend.append('phoneNumber', formData.phoneNumber);
+        formDataToSend.append('password', formData.password);
+        if (formData.photoFile) formDataToSend.append('photoFile', formData.photoFile);
 
         setIsSubmitting(true);
-
-        try {
-            const formDataToSend = new FormData();
-            formDataToSend.append('fullName', formData.fullName);
-            formDataToSend.append('email', formData.email);
-            formDataToSend.append('phoneNumber', formData.phoneNumber);
-            formDataToSend.append('password', formData.password);
-            if (formData.photoFile) formDataToSend.append('photoFile', formData.photoFile);
-
-            const response = await axiosAuth.post('/auth/signup', formDataToSend);
-            toast.success(response?.data?.data?.message || 'Account created successfully!');
-            // navigate('/');
-        } catch (error: any) {
-            const message = error.response?.data?.message || 'Something went wrong. Please try again.';
-            toast.error(message);
-        } finally {
-            setIsSubmitting(false);
-        }
+    try {
+      await signUp(formDataToSend);
+      toast.success('Signup successful!');
+    } catch {
+        console.log("Some Issues Found")
+    } finally {
+      setIsSubmitting(false);
+    }
     };
 
     return (

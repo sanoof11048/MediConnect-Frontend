@@ -52,39 +52,53 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('token', userData.accessToken);
 
     setUser(fullUser);
-    if (userData.role == "Admin")
-      navigate('/')
-    if (userData.role == "HomeNurse")
-      navigate('/')
-    if (userData.role == "Relative")
+    console.log(userData)
+    if (userData.role == "Admin") {
+      console.log("ToAdmin")
+      navigate('/admin')
+    }
+    else if (userData.role == "HomeNurse") {
+      console.log("ToNurse")
+      navigate('/nurse')
+    }
+    else if (userData.role == "Relative") {
+      console.log("ToRelative")
       navigate('/relative')
-    navigate('/');
+    }
+    else {
+      console.log("ToHome")
+      navigate('/');
+    }
   };
 
-const signUp = async (userData: FormData) => {
-  try {
-    const response = await axiosAuth.post('/Auth/signup', userData);
-    const user = response.data.data;
-    const fullUser: User = {
-      userId: user.id,
-      fullName: user.fullName,
-      email: user.email,
-      role: user.role,
-      photoUrl: user.photoUrl,
-      accessToken: user.accessToken,
-      refreshToken: user.refreshToken,
-    };
-    localStorage.setItem('authUser', JSON.stringify(fullUser));
-    localStorage.setItem('token', user.accessToken);
-    setUser(fullUser);
+  const signUp = async (userData: FormData) => {
+    try {
+      const response = await axiosAuth.post('/Auth/signup', userData);
+      const user = response.data.data;
+      const fullUser: User = {
+        userId: user.id,
+        fullName: user.fullName,
+        email: user.email,
+        role: user.role,
+        photoUrl: user.photoUrl,
+        accessToken: user.accessToken,
+        refreshToken: user.refreshToken,
+      };
+      localStorage.setItem('authUser', JSON.stringify(fullUser));
+      localStorage.setItem('token', user.accessToken);
+      setUser(fullUser);
 
-    if (user.role === "Relative") navigate('/relative');
-    else navigate('/');
-  } catch (error: any) {
-    toast.error(error?.response?.data?.message || "Sign up failed");
-    throw error;
-  }
-};
+      if (user.role == "Relative") {
+        navigate('/relative');
+      } else if (user.role == "Relative") {
+        navigate('/relative');
+      }
+      else navigate('/');
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Sign up failed");
+      throw error;
+    }
+  };
 
   const logout = async () => {
     try {
