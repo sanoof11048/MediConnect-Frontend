@@ -1,15 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
 
 function Loading() {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleRefresh = () => {
-    // Navigate to the same path to trigger a refresh
-    console.log(location.pathname + location.search)
-    navigate(location.pathname + location.search);
-    console.log(location.pathname + location.search)
-  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="text-center max-w-md mx-auto">
@@ -85,14 +75,15 @@ function Loading() {
         </div>
 
         <p className="mt-3 text-sm text-gray-500">Preparing your personalized care dashboard...</p>
-
-        {/* 🔁 Refresh Button */}
         <button
-          onClick={handleRefresh}
-          className="mt-6 px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white text-sm rounded-lg shadow transition"
-        >
-          Refresh Page
-        </button>
+  onClick={() => {
+    window.location.href = window.location.pathname + window.location.search;
+  }}
+  className="mt-6 px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white text-sm rounded-lg shadow transition"
+>
+  Refresh Page
+</button>
+
       </div>
     </div>
   );

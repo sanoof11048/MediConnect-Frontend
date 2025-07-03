@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Roles } from '../constants/roles';
 
 import Login from '../features/auth/pages/Login';
@@ -63,20 +63,23 @@ export default function AppRouter() {
 
       {/* Admin Routes */}
       <Route
-        path="/admin"
-        element={
-          <ProtectedRoute allowedRoles={[Roles.Admin]}>
-            <AdminLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<AdminDashboard />} />
-        <Route path="patients" element={<PatientsManagement />} />
-        <Route path="nurses" element={<NursesManagement />} />
-        <Route path="requests" element={<AdminNurseRequestsPage />} />
-        <Route path="assignments" element={<AssignmentsPage />} />
-        <Route path="relatives" element={<AdminRelativesPage />} />
-      </Route>
+  path="/admin"
+  element={
+    <ProtectedRoute allowedRoles={[Roles.Admin]}>
+      <AdminLayout />
+    </ProtectedRoute>
+  }
+>
+  {/* ✅ Redirect base /admin to a subpage like /admin/dashboard */}
+  <Route index element={<Navigate to="dashboard" replace />} />
+  <Route path="dashboard" element={<AdminDashboard />} />
+  <Route path="patients" element={<PatientsManagement />} />
+  <Route path="nurses" element={<NursesManagement />} />
+  <Route path="requests" element={<AdminNurseRequestsPage />} />
+  <Route path="assignments" element={<AssignmentsPage />} />
+  <Route path="relatives" element={<AdminRelativesPage />} />
+</Route>
+
 
       {/* Nurse Routes */}
       <Route

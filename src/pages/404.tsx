@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const NotFoundPage = () => {
+  const navigate = useNavigate()
   return (
     <>
       <section className="page_404 min-h-screen min-w-screen flex items-center justify-center">
@@ -11,7 +14,7 @@ const NotFoundPage = () => {
             <div className="contant_box_404 mt-[-50px]">
               <h3 className="text-2xl font-bold mb-2">Looks like you're lost</h3>
               <p className="mb-4">The page you are looking for is not available!</p>
-              <a href="/" className="link_404">
+              <a onClick={()=>navigate("/")} className="link_404">
                 Go to Home
               </a>
             </div>

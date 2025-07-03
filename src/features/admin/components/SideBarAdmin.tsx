@@ -23,7 +23,7 @@ interface SidebarAdminProps {
 
 const SidebarAdmin = ({ isOpen, setIsOpen }: SidebarAdminProps) => {
   const menuItems = [
-    { path: "/admin", icon: Home, label: "Dashboard", exact: true },
+    { path: "/admin/dashboard", icon: Home, label: "Dashboard", exact: true },
     { path: "/admin/patients", icon: AccessibilityIcon, label: "Patients" },
     { path: "/admin/nurses", icon: Stethoscope, label: "Nurses" },
     { path: "/admin/requests", icon: Users, label: "Requests" },
