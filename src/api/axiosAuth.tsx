@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosAuth = axios.create({
-  baseURL: "https://medi-connect-api-zak6.onrender.com/api"});
+  baseURL: "https://medi-connect-api-m3ky.onrender.com/api"});
 
 axiosAuth.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
