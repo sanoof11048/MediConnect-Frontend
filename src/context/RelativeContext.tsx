@@ -32,11 +32,12 @@ export const RelativeProvider = ({ children }: { children: ReactNode }) => {
     const { user } = useAuth()
 
     useEffect(() => {
+        setRelativeContextLoading(true);
         if (user?.role == "Relative") {
             fetchPatients();
             fetchCarePlans();
+            setRelativeContextLoading(false);
         }
-                    setRelativeContextLoading(true);
 
     }, [user])
     const fetchPatients = async () => {
@@ -51,6 +52,7 @@ export const RelativeProvider = ({ children }: { children: ReactNode }) => {
         } catch (error) {
             console.error('Error fetching patients:', error);
             toast.error('Failed to fetch patient data');
+             setRelativeContextLoading(false);
         } finally {
             setRelativeContextLoading(false);
         }
@@ -61,10 +63,12 @@ export const RelativeProvider = ({ children }: { children: ReactNode }) => {
 
             const res = await axiosAuth.get("CareTypeRate/GetAllPlans");
             const CarePlansR = res.data.data
+            console.log(res)
             setCarePlans(CarePlansR);
         }
         catch (error) {
             console.error('Error fetching patients:', error);
+             setRelativeContextLoading(false);
         }
         finally {
             setRelativeContextLoading(false);
@@ -81,6 +85,7 @@ export const RelativeProvider = ({ children }: { children: ReactNode }) => {
 
         } catch (error) {
             console.error('Error fetching payments:', error);
+             setRelativeContextLoading(false);
         } finally {
             setRelativeContextLoading(false);
         }

@@ -12,7 +12,7 @@ const RelativeLayout = () => {
    <div className="flex h-screen relative">
   {sidebarVisible && (
     <div
-      className="fixed inset-0 bg-black bg-opacity-30 z-[350] md:hidden"
+      className="fixed inset-0 bg-black/50 bg-opacity-30 z-[350] md:hidden"
       onClick={() => setSidebarVisible(false)}
     />
   )}

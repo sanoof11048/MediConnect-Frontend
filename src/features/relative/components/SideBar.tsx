@@ -50,7 +50,7 @@ function SideBar({ isVisible, onClose, activeTab }: Props) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`
-        fixed md:relative z-50 top-0 left-0 h-full
+        fixed md:relative z-[500] top-0 left-0 h-full
         bg-white shadow-2xl transition-all duration-100 ease-in-out flex flex-col border-r border-gray-100 overflow-y-auto
         ${isVisible || !isMobile ? "translate-x-0" : "-translate-x-full"}
         ${isMobile ? "w-72" : isHovered ? "md:w-72" : "md:w-20"} 

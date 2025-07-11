@@ -17,6 +17,9 @@ const NotFoundPage = () => {
               <a onClick={()=>navigate("/")} className="link_404">
                 Go to Home
               </a>
+              <a onClick={()=>navigate("/")} className="link_404">
+                Go to Home
+              </a>
             </div>
           </div>
         </div>

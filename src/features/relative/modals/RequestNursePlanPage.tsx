@@ -3,6 +3,7 @@ import { useRelative } from "../../../context/RelativeContext";
 import Loading from "../../../pages/Loading";
 import axiosAuth from "../../../api/axiosAuth";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 interface CarePlan {
   id: string;
@@ -43,7 +44,10 @@ const RequestNursePlanPage = () => {
   };
 
 const handleSubmit = async () => {
-  if (!selectedPlan || !selectedPatient || !startDate || !durationDays) return;
+  if (!selectedPlan || !selectedPatient || !startDate || !durationDays || durationDays <= 0) {
+  toast.error("Please fill all fields correctly.");
+  return;
+}
 
   setIsSubmitting(true);
 
@@ -57,8 +61,7 @@ const handleSubmit = async () => {
     };
 
     const response = await axiosAuth.post('/NurseRequest/create', payload);
-
-    if (response.status === 200 || response.status === 201) {
+    if (response.status == 200 || response.status == 201) {
       setIsSubmitting(false);
       setShowSuccess(true);
 

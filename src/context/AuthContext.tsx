@@ -114,7 +114,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             return res.data.message || 'Logged out successfully';
           },
           error: (err) => {
-            throw err?.response?.data?.message || 'Logout failed';
+            const msg = err?.response?.data?.message || 'Logout failed';
+            console.error('Logout error:', msg);
+            throw msg;
           },
         }
       );
